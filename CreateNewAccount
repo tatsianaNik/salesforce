@@ -8,7 +8,7 @@ global class CreateNewAccount {
         List<Task> taskList = new List<Task>();
         
         for (Account acct : accts) {
-           // acctName.add(acct.Name);
+           
             taskList.add(new Task(Subject = 'Negotiations with '+ acct.Name,
                                  WhatId = acct.Id));
             insert taskList;
