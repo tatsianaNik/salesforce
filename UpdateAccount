@@ -1,0 +1,28 @@
+global class UpdateAccount {
+@InvocableMethod()
+     
+    global static void getAccount()
+    {
+        
+        List<String> acctName = new List<String>(); 
+        List<Account> accts = [SELECT Name FROM Account];
+        List<Task> taskList= [SELECT WhatId FROM Task];
+        List< User > uList = [select Name from User where isActive = true];
+        Integer Ran = (integer)(Math.random() * (uList.size()));
+        
+        for (Account acct : accts) {
+            Integer i=0;    
+            for (Task taskLists : taskList) {          
+                if (taskLists.WhatId == acct.Id){
+                  i=i+1;
+                   if (i>=3) {          
+                    taskLists.OwnerId=uList[Ran].id;
+                 //   System.debug('Assign user ' + uList[Ran].Name + ' to tasks ' + acct.Name);
+                   }
+                 }
+            }
+        // System.debug('Account ' + acct.Name + ' number of task ' + i);
+       }     
+  // return accts;
+}
+}
