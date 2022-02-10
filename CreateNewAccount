@@ -1,0 +1,19 @@
+global class CreateNewAccount {
+    @InvocableMethod()
+     
+    global static void getAccount(List<String> ids)
+    {
+        List<String> acctName = new List<String>(); 
+        List<Account> accts = [SELECT Name from Account WHERE Name in :ids];
+        List<Task> taskList = new List<Task>();
+        
+        for (Account acct : accts) {
+           // acctName.add(acct.Name);
+            taskList.add(new Task(Subject = 'Negotiations with '+ acct.Name,
+                                 WhatId = acct.Id));
+            insert taskList;
+        }          
+        
+    }
+
+}
